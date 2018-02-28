@@ -5,7 +5,7 @@
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack --progress --config webpack.config.js --color",
     "dev": "cross-env NODE_ENV=development webpack-dev-server -d --inline --hot  --host 0.0.0.0 --color --progress --no-info",
-    "lint": "eslint ."
+    "lint": "eslint --ignore-path .gitignore **/*.jsx **/*.js"
   },
   "repository": {
     "type": "git",
@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/AUT-CEIT/Registerator#readme",
   "dependencies": {
+    "axios": "^0.18.0",
     "bootstrap": "^4.0.0-alpha.6",
     "helmet": "^3.6.1"
   },
