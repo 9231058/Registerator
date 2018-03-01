@@ -25,11 +25,39 @@ class App extends React.Component {
     })
   }
 
+  handleSubmit (event) {
+    event.preventDefault();
+  }
+
   render () {
     return (
-      <div>
-        <h1>Welcome to CEIT Registerator</h1>
-        <h2>{this.state.about}</h2>
+      <div className="container">
+        <div className="py-5 text-center">
+          <h1>Welcome to CEIT Registerator</h1>
+          <h2>{this.state.about}</h2>
+          <p className="lead">
+            Please fill the following form with your information
+            currectly.
+          </p>
+        </div>
+        <div className="row">
+          <div className="col-8">
+            <form className="needs-validation" onSubmit={this.handleSubmit}>
+              <div className="row">
+                <div className="col-6 mb-3">
+                  <label htmlFor="firstName">First name</label>
+                  <input type="text" className="form-control" id="firstName" placeholder="" value="" required></input>
+                </div>
+                <div className="col-6 mb-3">
+                  <label htmlFor="lastName">Last name</label>
+                  <input type="text" className="form-control" id="lastName" placeholder="" value="" required></input>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div className="col-4">
+          </div>
+        </div>
       </div>
     )
   }
