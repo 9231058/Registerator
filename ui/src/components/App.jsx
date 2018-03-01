@@ -6,10 +6,10 @@ import 'bootstrap/dist/css/bootstrap.css'
 
 class App extends React.Component {
   constructor () {
-    super()
+    super(...arguments)
 
     this.client = axios.create({
-      baseURL: `${window.location.href}api`
+      baseURL: '/api'
     })
 
     this.state = {
@@ -26,6 +26,16 @@ class App extends React.Component {
   }
 
   handleSubmit (event) {
+    this.client.post('/student', {
+      fname: this.state.firstName,
+      lname: this.state.lastName,
+      id: this.state.id,
+      email: this.state.email
+    }).then((response) => {
+    }).catch((err) => {
+      console.log(err)
+    })
+
     event.preventDefault()
   }
 
@@ -42,7 +52,7 @@ class App extends React.Component {
         </div>
         <div className='row'>
           <div className='col-8'>
-            <form className='needs-validation' onSubmit={this.handleSubmit}>
+            <form className='needs-validation' onSubmit={(event) => this.handleSubmit(event)}>
               <div className='row'>
                 <div className='col-6 mb-3'>
                   <label htmlFor='firstName'>First name</label>
