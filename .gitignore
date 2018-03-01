@@ -16,3 +16,6 @@ vendor/
 
 # Configuration
 config.yml
+
+# binary
+Registerator
