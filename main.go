@@ -98,10 +98,10 @@ func aboutHandler(c *gin.Context) {
 
 func registerHandler(c *gin.Context) {
 	var json struct {
-		FirstName string `json:"fname" binding:"required"`
-		LastName  string `json:"lname" binding:"required"`
-		ID        int64  `json:"id" binding:"required"`
-		Email     string `json:"email" binding:"required"`
+		FirstName string `json:"fname" binding:"required,alpha"`
+		LastName  string `json:"lname" binding:"required,alpha"`
+		ID        int64  `json:"id" binding:"required,numeric"`
+		Email     string `json:"email" binding:"required,email"`
 	}
 	if err := c.BindJSON(&json); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
