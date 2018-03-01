@@ -27,13 +27,14 @@ class App extends React.Component {
 
   handleSubmit (event) {
     this.client.post('/student', {
-      fname: this.state.firstName,
-      lname: this.state.lastName,
-      id: this.state.id,
-      email: this.state.email
+      fname: event.target.firstName.value,
+      lname: event.target.lastName.value,
+      id: event.target.studentID.value,
+      email: event.target.email.value
     }).then((response) => {
-    }).catch((err) => {
+    }).catch((response, err) => {
       console.log(err)
+      console.log(response)
     })
 
     event.preventDefault()
@@ -56,14 +57,14 @@ class App extends React.Component {
               <div className='row'>
                 <div className='col-6 mb-3'>
                   <label htmlFor='firstName'>First name</label>
-                  <input type='text' className='form-control' id='firstName' placeholder='' required />
+                  <input type='text' className='form-control' name='firstName' id='firstName' placeholder='' required />
                   <div className='invalid-feedback' style={{width: '100%'}}>
                     Your First name is required.
                   </div>
                 </div>
                 <div className='col-6 mb-3'>
                   <label htmlFor='lastName'>Last name</label>
-                  <input type='text' className='form-control' id='lastName' placeholder='' required />
+                  <input type='text' className='form-control' name='lastName' id='lastName' placeholder='' required />
                   <div className='invalid-feedback' style={{width: '100%'}}>
                     Your Last name is required.
                   </div>
@@ -71,14 +72,14 @@ class App extends React.Component {
               </div>
               <div className='mb-3'>
                 <label htmlFor='studentID'>Username</label>
-                <input type='text' className='form-control' id='stduentID' placeholder='9231058' required />
+                <input type='text' className='form-control' name='studentID' id='stduentID' placeholder='9231058' required />
                 <div className='invalid-feedback' style={{width: '100%'}}>
                   Your StudentID is required.
                 </div>
               </div>
               <div className='mb-3'>
                 <label htmlFor='email'>Email</label>
-                <input type='email' className='form-control' id='email' placeholder='you@example.com' required />
+                <input type='email' className='form-control' name='email' id='email' placeholder='you@example.com' required />
                 <div className='invalid-feedback' style={{width: '100%'}}>
                   Your Email is required.
                 </div>
