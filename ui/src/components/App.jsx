@@ -73,12 +73,12 @@ class App extends React.Component {
                   Your Email is required.
                 </div>
               </div>
+              <button className='btn btn-primary btn-lg btn-block' type='submit'>Submit</button>
             </form>
-            <hr className='mb-4' />
-            <button className='btn btn-primary btn-lg btn-block' type='submit'>Submit</button>
           </div>
           <div className='col-4' />
         </div>
+        <hr className='mb-4' />
         <footer className='my-5 pt-5 text-muted text-center text-small'>
           <p className='mb-1'>&copy; 2018 AUT-CEIT</p>
           <ul className='list-inline'>
