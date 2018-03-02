@@ -100,7 +100,7 @@ func registerHandler(c *gin.Context) {
 	var json struct {
 		FirstName string `json:"fname" binding:"required,alpha"`
 		LastName  string `json:"lname" binding:"required,alpha"`
-		ID        string `json:"id" binding:"required,numeric"`
+		ID        string `json:"id" binding:"required,numeric,len=7"`
 		Email     string `json:"email" binding:"required,email"`
 	}
 	if err := c.BindJSON(&json); err != nil {
@@ -122,8 +122,11 @@ func registerHandler(c *gin.Context) {
 			"student": json.ID,
 		}).Errorln(err)
 	}
+
 	log.WithFields(log.Fields{
 		"email":   json.Email,
 		"student": json.ID,
 	}).Infoln(resp)
+
+	c.JSON(http.StatusOK, gin.H{"email": json.Email})
 }
