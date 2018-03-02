@@ -13,7 +13,8 @@ class App extends React.Component {
     })
 
     this.state = {
-      about: 'loading'
+      about: 'loading',
+      errorMessage: ''
     }
   }
 
@@ -32,9 +33,11 @@ class App extends React.Component {
       id: event.target.studentID.value,
       email: event.target.email.value
     }).then((response) => {
-    }).catch((response, err) => {
-      console.log(err)
-      console.log(response)
+      window.alert('successful register')
+    }).catch((error) => {
+      this.setState({
+        errorMessage: error.response.data['error']
+      })
     })
 
     event.preventDefault()
@@ -45,12 +48,19 @@ class App extends React.Component {
       <div className='container'>
         <div className='py-5 text-center'>
           <h1>Welcome to CEIT Registerator</h1>
-          <h2>{this.state.about}</h2>
           <p className='lead'>
             Please fill the following form with your information
             currectly.
           </p>
         </div>
+        { this.state.errorMessage !== '' &&
+        <div className='alert alert-danger alert-dismissible fade show' role='alert'>
+          <strong>Dear student!</strong> {this.state.errorMessage}
+          <button type='button' className='close' data-dismiss='alert' aria-label='Close'>
+            <span aria-hidden='true'>&times;</span>
+          </button>
+        </div>
+        }
         <div className='row'>
           <div className='col-8'>
             <form className='needs-validation' onSubmit={(event) => this.handleSubmit(event)}>
@@ -71,7 +81,7 @@ class App extends React.Component {
                 </div>
               </div>
               <div className='mb-3'>
-                <label htmlFor='studentID'>Username</label>
+                <label htmlFor='studentID'>StudentID</label>
                 <input type='text' className='form-control' name='studentID' id='stduentID' placeholder='9231058' required />
                 <div className='invalid-feedback' style={{width: '100%'}}>
                   Your StudentID is required.
