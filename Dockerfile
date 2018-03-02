@@ -16,6 +16,7 @@ RUN npm run build
 
 # Final stage
 FROM alpine
+RUN apk update && apk add ca-certificates && rm -rf /var/cache/apk/*
 EXPOSE 8080/tcp
 WORKDIR /app
 COPY --from=go-build /Registerator /app/
