@@ -33,7 +33,7 @@ class App extends React.Component {
       id: event.target.studentID.value,
       email: event.target.email.value
     }).then((response) => {
-      window.alert('successful register')
+      window.location = 'https://github.com/ce104'
     }).catch((error) => {
       this.setState({
         errorMessage: error.response.data['error']
