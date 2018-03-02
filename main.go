@@ -111,14 +111,19 @@ func registerHandler(c *gin.Context) {
 	ctx := context.Background()
 	role := "direct_member"
 
-	invite, resp, err := client.Organizations.CreateOrgInvitation(ctx, "ce104", &github.CreateOrgInvitationOptions{
+	_, resp, err := client.Organizations.CreateOrgInvitation(ctx, "ce104", &github.CreateOrgInvitationOptions{
 		Email:  &json.Email,
 		Role:   &role,
 		TeamID: []int64{},
 	})
 	if err != nil {
-		log.Fatal(err)
+		log.WithFields(log.Fields{
+			"email":   json.Email,
+			"student": json.ID,
+		}).Errorln(err)
 	}
-	log.Print(invite)
-	log.Print(resp)
+	log.WithFields(log.Fields{
+		"email":   json.Email,
+		"student": json.ID,
+	}).Infoln(resp)
 }
